@@ -8,8 +8,8 @@ import PeopleIcon from '@mui/icons-material/People';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import LayersIcon from '@mui/icons-material/Layers';
 import AssignmentIcon from '@mui/icons-material/Assignment';
+import PersonSearchIcon from '@mui/icons-material/PersonSearch';
 import { Link } from 'react-router-dom';
-import { messageStruct } from '../states/ticketSlice';
 
 const mainListItems = (
   <React.Fragment>
@@ -27,9 +27,15 @@ const mainListItems = (
     </ListItemButton>
     <ListItemButton>
       <ListItemIcon>
-        <BarChartIcon />
+        <PersonSearchIcon />
       </ListItemIcon>
       <ListItemText primary="Assign" />
+    </ListItemButton>
+    <ListItemButton>
+      <ListItemIcon>
+        <BarChartIcon />
+      </ListItemIcon>
+      <ListItemText primary="Reports" />
     </ListItemButton>
     <ListItemButton component={Link} to={'/ticket/creation'}>
       <ListItemIcon>
@@ -65,10 +71,5 @@ const secondaryListItems = (
     </ListItemButton>
   </React.Fragment>
 );
-
-
-
-//export const singleRow = (int: number): => rowsTickes.filter((row) => row.id == int+"")[0];
-
 
 export { mainListItems, secondaryListItems };

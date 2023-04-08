@@ -5,12 +5,14 @@ import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import * as React from 'react';
-import Title from './Title';
+import Title from './title';
 import { rowsTickes } from '../utils/data';
+import { useNavigate } from 'react-router-dom';
+import { ticketStructur } from '../states/ticketSlice';
 
 export default function TickesTable() {
   /*const [rowsTickes, setRowTickets] = React.useState<ticketStructur[]>([])
-  const navigate = useNavigate();
+
   const getAllTickes = useGetAllTickets()
   React.useEffect(()=>{
     requestTickets()
@@ -20,10 +22,10 @@ export default function TickesTable() {
     const newTicketsRow = await getAllTickes().then(res=>res.json());
     setRowTickets(newTicketsRow['data']);
   }*/
-
-  const ticketSelected = (event: any, row: any) => {
-    //event.preventDefault();
-    //navigate(`../ticket/${row.id}`, { replace: true });
+  const navigate = useNavigate();
+  const ticketSelected = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>, row: ticketStructur) => {
+    event.preventDefault();
+    navigate(`../ticket/${row.id}`, { replace: true });
   };
 
   return (
@@ -56,7 +58,7 @@ export default function TickesTable() {
                   color="primary"
                   variant="outlined"
                   clickable
-                  onClick={(event: any) => ticketSelected(event, row)}
+                  onClick={(event) => ticketSelected(event, row)}
                 />
               </TableCell>
             </TableRow>

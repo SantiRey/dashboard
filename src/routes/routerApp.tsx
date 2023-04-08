@@ -5,6 +5,9 @@ import App from '../App';
 import Dashboard from "../view/DashBoard";
 import UserBoard from "../view/UserBoard";
 import TicketCreationView from "../view/TicketCreationView";
+import TicketView from "../view/TicketView";
+
+
 export const router = createBrowserRouter([
     {
       path: "/dashboard",
@@ -21,6 +24,10 @@ export const router = createBrowserRouter([
     {
       path: "/ticket/creation",
       element: <TicketCreationView></TicketCreationView>
+    },
+    {
+      path: "/ticket/:ticketId",
+      element: <TicketView></TicketView>
     }
   ]);
 

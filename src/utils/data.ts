@@ -1,4 +1,5 @@
-import { messageStruct } from '../states/ticketSlice';
+import { messageStructur } from '../states/ticketSlice';
+// USERS
 
 function createUser(id: string, name: string, email: string, role?: string) {
   return {
@@ -25,7 +26,7 @@ function createData(
   description: string,
   assignation: string,
   status: string,
-  message: messageStruct[]
+  message: messageStructur[]
 ) {
   return {
     id,
@@ -102,4 +103,11 @@ const rowsTickes = [
   ),
 ];
 
-export { rowsTickes, rowsUser};
+//FUNTIONS
+
+export const useSingleRow = ()=>
+  (int: string | undefined) => {
+    return rowsTickes.filter((row) => row.id == int+"")[0]
+  };
+
+export { rowsTickes, rowsUser };

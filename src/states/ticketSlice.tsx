@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-export type messageStruct = {
+export type messageStructur = {
   id: string;
   author: string;
   message: string;
@@ -14,7 +14,7 @@ export type ticketStructur = {
   description: string;
   assignation: string;
   status: string;
-  message: messageStruct[];
+  message: messageStructur[];
 };
 
 const ticketInitilization: ticketStructur = {

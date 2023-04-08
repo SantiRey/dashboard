@@ -5,7 +5,7 @@ import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import * as React from 'react';
-import Title from './Title';
+import title from './title';
 import { rowsUser } from '../utils/data';
 
 export default function UserTable() {
@@ -28,7 +28,7 @@ export default function UserTable() {
 
   return (
     <React.Fragment>
-      <Title>Users Table</Title>
+      <title>Users Table</title>
       <Table size="small">
         <TableHead>
           <TableRow>

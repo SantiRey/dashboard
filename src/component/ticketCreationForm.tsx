@@ -1,16 +1,16 @@
 import { Box, Button, Paper, TextField } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import { useState } from 'react';
-import Title from './Title';
-import { messageStruct, ticketStructur } from '../states/ticketSlice';
+import title from './title';
+import { messageStructur, ticketStructur } from '../states/ticketSlice';
 export default function TicketCreationForm() {
-const handleSubmit=()=>{
-    console.log()
-}
-const handleChange=()=>{
-    console.log()
-}
- /* const createTicket = useCreateTicket();
+  const handleSubmit = () => {
+    console.log();
+  };
+  const handleChange = () => {
+    console.log();
+  };
+  /* const createTicket = useCreateTicket();
 
   const initialStateTicket = {
     application: '',
@@ -70,7 +70,7 @@ const handleChange=()=>{
   return (
     <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
       <Paper elevation={0} sx={{ p: 4 }}>
-        <Title>Create a Tickets</Title>
+        <title>Create a Tickets</title>
         {}
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6}>

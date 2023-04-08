@@ -1,6 +1,7 @@
 import { Link, Typography } from '@mui/material';
 
-export default function Copyright(props: any) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export default function Copyright(props:any) {
   return (
     <Typography
       variant="body2"
