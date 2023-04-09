@@ -2,18 +2,18 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 
+import Assing from '../../component/assign';
 import SketchContent from '../../component/structur';
-import TicketCard from '../../component/ticketCard';
 
-function TicketViewContent() {
+function AssingContent() {
   return (
     <SketchContent>
       <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
         <Grid container spacing={3}>
           {/* Recent Orders */}
           <Grid item xs={12}>
-            <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-              <TicketCard />
+            <Paper sx={{ p: 5, display: 'flex', flexDirection: 'column' }}>
+              <Assing />
             </Paper>
           </Grid>
         </Grid>
@@ -22,6 +22,6 @@ function TicketViewContent() {
   );
 }
 
-export default function TicketView() {
-  return <TicketViewContent />;
+export default function AssingView() {
+  return <AssingContent />;
 }

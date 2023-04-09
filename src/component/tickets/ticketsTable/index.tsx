@@ -5,10 +5,10 @@ import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import * as React from 'react';
-import Title from './title';
-import { rowsTickes } from '../utils/data';
+import Title from '../../title';
+import { rowsTickes } from '../../../utils/data';
 import { useNavigate } from 'react-router-dom';
-import { ticketStructur } from '../states/ticketSlice';
+import { ticketStructur } from '../../../states/ticketSlice';
 
 export default function TickesTable() {
   /*const [rowsTickes, setRowTickets] = React.useState<ticketStructur[]>([])
@@ -23,7 +23,10 @@ export default function TickesTable() {
     setRowTickets(newTicketsRow['data']);
   }*/
   const navigate = useNavigate();
-  const ticketSelected = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>, row: ticketStructur) => {
+  const ticketSelected = (
+    event: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
+    row: ticketStructur
+  ) => {
     event.preventDefault();
     navigate(`../ticket/${row.id}`, { replace: true });
   };
@@ -38,6 +41,7 @@ export default function TickesTable() {
             <TableCell>Title</TableCell>
             <TableCell>Assignate</TableCell>
             <TableCell>Description</TableCell>
+            <TableCell>Tier</TableCell>
             <TableCell>State</TableCell>
             <TableCell align="center">More</TableCell>
           </TableRow>
@@ -49,6 +53,7 @@ export default function TickesTable() {
               <TableCell>{row.title}</TableCell>
               <TableCell>{row.assignation}</TableCell>
               <TableCell>{row.description}</TableCell>
+              <TableCell>{row.tier}</TableCell>
               <TableCell>{row.status}</TableCell>
               <TableCell align="center">
                 <Chip

@@ -14,6 +14,7 @@ export type ticketStructur = {
   description: string;
   assignation: string;
   status: string;
+  tier: string;
   message: messageStructur[];
 };
 
@@ -24,6 +25,7 @@ const ticketInitilization: ticketStructur = {
   description: '',
   assignation: '',
   status: '',
+  tier: '',
   message: [],
 };
 

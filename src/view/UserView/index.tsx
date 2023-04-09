@@ -3,9 +3,9 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 
 import SketchContent from '../../component/structur';
-import TicketCard from '../../component/ticketCard';
+import UserCard from '../../component/user/userCard';
 
-function TicketViewContent() {
+function UserBoardContent() {
   return (
     <SketchContent>
       <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
@@ -13,7 +13,7 @@ function TicketViewContent() {
           {/* Recent Orders */}
           <Grid item xs={12}>
             <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-              <TicketCard />
+              <UserCard />
             </Paper>
           </Grid>
         </Grid>
@@ -22,6 +22,6 @@ function TicketViewContent() {
   );
 }
 
-export default function TicketView() {
-  return <TicketViewContent />;
+export default function UserView() {
+  return <UserBoardContent />;
 }

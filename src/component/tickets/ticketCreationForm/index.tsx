@@ -1,14 +1,53 @@
-import { Box, Button, Paper, TextField } from '@mui/material';
+import {
+  Box,
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Paper,
+  Select,
+  SelectChangeEvent,
+  TextField,
+} from '@mui/material';
 import Grid from '@mui/material/Grid';
-import { useState } from 'react';
-import title from './title';
-import { messageStructur, ticketStructur } from '../states/ticketSlice';
+import Title from '../../title';
+import React, { useState } from 'react';
+import { rowsTickes, rowsUser } from '../../../utils/data';
+import { ticketStructur } from '../../../states/ticketSlice';
+import { v4 as uuidv4 } from 'uuid';
+
 export default function TicketCreationForm() {
-  const handleSubmit = () => {
-    console.log();
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    const ticketToSave: ticketStructur = {
+      tier: data.get('tier') as string,
+      assignation: data.get('assignation') as string,
+      creationDate: new Date() + '',
+      description: data.get('description') as string,
+      id: uuidv4(),
+      message: data.get('messages')
+        ? [
+            {
+              id: uuidv4(),
+              message: data.get('messages') as string,
+              author: 'Ines',
+              timestamp: new Date().getUTCDate() + '',
+            },
+          ]
+        : [],
+      status: 'Open',
+      title: data.get('title') as string,
+    };
+    rowsTickes.push(ticketToSave);
   };
+  const [username, setUserName] = useState('');
   const handleChange = () => {
-    console.log();
+    console.log;
+  };
+  const handleAsignation = (event: SelectChangeEvent) => {
+    event.preventDefault();
+    setUserName(event.target.value as string);
   };
   /* const createTicket = useCreateTicket();
 
@@ -69,18 +108,18 @@ export default function TicketCreationForm() {
   };*/
   return (
     <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-      <Paper elevation={0} sx={{ p: 4 }}>
-        <title>Create a Tickets</title>
+      <>
+        <Title>Create a Tickets</Title>
         {}
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6}>
             <TextField
               required
-              id="userName"
-              name="userName"
-              label="User Name"
+              id="tier"
+              name="tier"
+              label="Tier"
               fullWidth
-              autoComplete="given-name"
+              autoComplete="tier"
               variant="standard"
               onChange={handleChange}
             />
@@ -88,8 +127,8 @@ export default function TicketCreationForm() {
           <Grid item xs={12} sm={6}>
             <TextField
               required
-              id="ticketTitle"
-              name="ticketTitle"
+              id="tile"
+              name="title"
               label="Ticket Title"
               fullWidth
               variant="standard"
@@ -101,18 +140,7 @@ export default function TicketCreationForm() {
               required
               id="description"
               name="description"
-              label="Issue Description"
-              fullWidth
-              variant="standard"
-              onChange={handleChange}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              required
-              id="application"
-              name="application"
-              label="Application"
+              label="Ticket Description"
               fullWidth
               variant="standard"
               onChange={handleChange}
@@ -122,11 +150,33 @@ export default function TicketCreationForm() {
             <TextField
               id="messages"
               name="messages"
-              label="Message for Tech Support"
+              label="Information"
               fullWidth
               variant="standard"
               onChange={handleChange}
             />
+          </Grid>
+
+          <Grid item xs={12}>
+            <FormControl variant="standard" fullWidth>
+              <InputLabel id="demo-simple-select-label">Assignation</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={username}
+                label="assignation"
+                name="assignation"
+                onChange={handleAsignation}
+              >
+                {rowsUser.map((user) => {
+                  return (
+                    <MenuItem value={user.email} key={user.email}>
+                      {user.userName}
+                    </MenuItem>
+                  );
+                })}
+              </Select>
+            </FormControl>
           </Grid>
         </Grid>
         <Button
@@ -137,7 +187,7 @@ export default function TicketCreationForm() {
         >
           create ticket
         </Button>
-      </Paper>
+      </>
     </Box>
   );
 }

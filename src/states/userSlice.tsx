@@ -1,17 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit"
 
-type userStructur={
+export type userStructur={
     userName: string,
     email: string,
     token: string,
-    rolle: string,
+    role: string,
 }
 
 const userInitialState: userStructur={
     userName:"",
     email:"",
     token:"",
-    rolle:""
+    role:""
 }
 
 const userSlice = createSlice({
@@ -27,7 +27,7 @@ const userSlice = createSlice({
                 userName:"",
                 email:"",
                 token:"",
-                rolle:""
+                role:""
             }
         }
     }

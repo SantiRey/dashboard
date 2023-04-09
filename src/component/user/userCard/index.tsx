@@ -2,21 +2,17 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import ShareIcon from '@mui/icons-material/Share';
-import { Divider, Grid, Paper } from '@mui/material';
+import { Paper } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
-import Collapse from '@mui/material/Collapse';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
 import { red } from '@mui/material/colors';
 import { styled } from '@mui/material/styles';
-import { useSingleRowTicket } from '../utils/data';
-import MessageList from './MessagesList';
-import { ticketStructur } from '../states/ticketSlice';
-import { useParams } from 'react-router-dom';
 import * as React from 'react';
+import { useParams } from 'react-router-dom';
+import { userStructur } from '../../../states/userSlice';
+import { useSingleRowUser } from '../../../utils/data';
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -34,10 +30,10 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
   }),
 }));
 
-export default function TicketCard() {
-  const { ticketId } = useParams();
-  const getSingleRow = useSingleRowTicket();
-  const row: ticketStructur = getSingleRow(ticketId);
+export default function UserCard() {
+  const { userId } = useParams();
+  const getSingleRow = useSingleRowUser();
+  const row: userStructur = getSingleRow(userId);
   const [expanded, setExpanded] = React.useState(false);
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -72,7 +68,7 @@ export default function TicketCard() {
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: red[300], p: 4 }} aria-label="recipe">
-            {row.assignation[0]}
+            {row.userName[0]}
           </Avatar>
         }
         action={
@@ -80,40 +76,10 @@ export default function TicketCard() {
             <MoreVertIcon />
           </IconButton>
         }
-        title={row.assignation}
-        subheader={row.creationDate}
+        title={row.userName}
+        subheader={row.role}
       />
 
-      <CardContent>
-        <Typography variant="subtitle2" color="text.primary">
-          {row.title}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          {row.description}
-        </Typography>
-        <Divider sx={{ my: 2 }} />
-        <Grid container columns={{ xs: 6, md: 12 }}>
-          <Typography
-            sx={{ pr: 1 }}
-            variant="subtitle2"
-            color="text.primary"
-            gutterBottom
-          >
-            Tier
-          </Typography>
-          <Typography variant="body2" color="text.secondary" gutterBottom>
-            {row.tier}
-          </Typography>
-        </Grid>
-        <Grid container columns={{ xs: 6, md: 12 }}>
-          <Typography sx={{ pr: 1 }} variant="subtitle2" color="text.primary">
-            Status
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            {row.status}
-          </Typography>
-        </Grid>
-      </CardContent>
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
           <RemoveRedEyeIcon />
@@ -130,11 +96,13 @@ export default function TicketCard() {
           <ExpandMoreIcon />
         </ExpandMore>
       </CardActions>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>
-          <MessageList messagesGiven={row.message} />
-        </CardContent>
-      </Collapse>
     </Paper>
   );
 }
+/**
+ *      <Collapse in={expanded} timeout="auto" unmountOnExit>
+        <CardContent>
+          <MessageList messagesGiven={row.email} />
+        </CardContent>
+      </Collapse>
+ */

@@ -1,21 +1,33 @@
 import { messageStructur } from '../states/ticketSlice';
 // USERS
 
-function createUser(id: string, name: string, email: string, role?: string) {
+function createUser(
+  id: string,
+  userName: string,
+  email: string,
+  role: string,
+  token: string
+) {
   return {
     id,
-    name,
+    userName,
     email,
     role,
+    token,
   };
 }
 
 const rowsUser = [
-  createUser('1', 'John Doe', 'john.doe@example.com', 'admin'),
-  createUser('2', 'Jane Doe', 'jane.doe@example.com', 'user'),
-  createUser('3', 'Bob Smith', 'bob.smith@example.com'),
-  createUser('4', 'Trixi Smith', 't.smith@example.com'),
+  createUser('1', 'John Doe', 'john.doe@example.com', 'admin', 'token'),
+  createUser('2', 'Jane Doe', 'jane.doe@example.com', 'user', 'token'),
+  createUser('3', 'Bob Smith', 'bob.smith@example.com', 'developer', 'token'),
+  createUser('4', 'Trixi Smith', 't.smith@example.com', 'developer', 'token'),
 ];
+
+export const useSingleRowUser = () => (int: string | undefined) => {
+  return rowsUser.filter((row) => row.id == int + '')[0];
+};
+
 //TICKETS
 
 // Generate Order Data
@@ -26,6 +38,7 @@ function createData(
   description: string,
   assignation: string,
   status: string,
+  tier: string,
   message: messageStructur[]
 ) {
   return {
@@ -35,6 +48,7 @@ function createData(
     description,
     assignation,
     status,
+    tier,
     message,
   };
 }
@@ -45,7 +59,18 @@ const rowsTickes = [
     'Tarea 1',
     'Descripción de la tarea 1',
     'Persona asignada 1',
-    'En progreso',
+    'In Progress',
+    'Development',
+    []
+  ),
+  createData(
+    '1',
+    '2022-04-07',
+    'Tarea 1',
+    'Descripción de la tarea 1',
+    'Persona asignada 1',
+    'Open',
+    'Development',
     []
   ),
   createData(
@@ -54,7 +79,8 @@ const rowsTickes = [
     'Tarea 2',
     'Descripción de la tarea 2',
     'Persona asignada 2',
-    'Pendiente',
+    'In Progress',
+    'Team',
     []
   ),
   createData(
@@ -63,18 +89,21 @@ const rowsTickes = [
     'Tarea 3',
     'Descripción de la tarea 3',
     'Persona asignada 3',
-    'Completada',
+    'Open',
+    'Development',
     [
       {
         id: '1',
         author: 'Usuario 1',
-        message: 'Mensaje 1',
+        message:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus interdum ultricies ipsum, nec euismod nisl convallis quis. Vestibulum condimentum augue id mollis congue. Suspendisse non sem in lorem hendrerit vehicula a non ligula. Vestibulum euismod pellentesque erat, sed vestibulum nunc bibendum in. Donec aliquet auctor lacus a rutrum. Sed feugiat dolor vitae ante bibendum, eget fermentum odio pellentesque. Donec tristique erat in est sodales viverra. ',
         timestamp: '2022-04-10',
       },
       {
         id: '2',
         author: 'Usuario 2',
-        message: 'Mensaje 2',
+        message:
+          'Suspendisse potenti. Maecenas gravida libero sed justo dapibus feugiat. Nam volutpat lacus ac ipsum accumsan, vel ultrices massa suscipit. Integer pretium, enim vel mattis eleifend, dolor magna euismod neque, eu hendrerit justo turpis id quam. Nam non nisl mauris. Duis porttitor leo et nulla scelerisque, ut ultrices quam hendrerit. Proin convallis ante quis sem feugiat aliquet. Etiam semper, magna vitae hendrerit congue, enim tortor molestie dui, sed convallis',
         timestamp: '2022-04-11',
       },
     ]
@@ -85,18 +114,21 @@ const rowsTickes = [
     'Tarea 4',
     'Descripción de la tarea 3',
     'Persona asignada 4',
-    'Completada',
+    'In Progress',
+    'Team',
     [
       {
         id: '1',
         author: 'Usuario 1',
-        message: 'Mensaje 1',
+        message:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus interdum ultricies ipsum, nec euismod nisl convallis quis. Vestibulum condimentum augue id mollis congue. Suspendisse non sem in lorem hendrerit vehicula a non ligula. Vestibulum euismod pellentesque erat, sed vestibulum nunc bibendum in. Donec aliquet auctor lacus a rutrum. Sed feugiat dolor vitae ante bibendum, eget fermentum odio pellentesque. Donec tristique erat in est sodales viverra. ',
         timestamp: '2022-04-10',
       },
       {
         id: '2',
         author: 'Usuario 2',
-        message: 'Mensaje 2',
+        message:
+          'Suspendisse potenti. Maecenas gravida libero sed justo dapibus feugiat. Nam volutpat lacus ac ipsum accumsan, vel ultrices massa suscipit. Integer pretium, enim vel mattis eleifend, dolor magna euismod neque, eu hendrerit justo turpis id quam. Nam non nisl mauris. Duis porttitor leo et nulla scelerisque, ut ultrices quam hendrerit. Proin convallis ante quis sem feugiat aliquet. Etiam semper, magna vitae hendrerit congue, enim tortor molestie dui, sed convallis',
         timestamp: '2022-04-11',
       },
     ]
@@ -105,9 +137,26 @@ const rowsTickes = [
 
 //FUNTIONS
 
-export const useSingleRow = ()=>
-  (int: string | undefined) => {
-    return rowsTickes.filter((row) => row.id == int+"")[0]
-  };
+export const useSingleRowTicket = () => (int: string | undefined) => {
+  return rowsTickes.filter((row) => row.id == int + '')[0];
+};
+export const useGetTicketByStatus = () => {
+  const f = (status: string) => {
+    return rowsTickes.filter((row) => row.status == status);
+  }
+  return{
+    getOpen: f('Open'),
+    getInProgress: f('In Progress'),
+  }
+};
 
+export const useGetTicketByTier = () => {
+  const f = (tier: string) => {
+    return rowsTickes.filter((row) => row.tier == tier);
+  }
+  return{
+    getOpen: f('Open'),
+    getInProgress: f('In Progress'),
+  }
+};
 export { rowsTickes, rowsUser };

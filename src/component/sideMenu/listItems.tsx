@@ -23,9 +23,9 @@ const mainListItems = (
       <ListItemIcon>
         <PeopleIcon />
       </ListItemIcon>
-      <ListItemText primary="Customers" />
+      <ListItemText primary="Users" />
     </ListItemButton>
-    <ListItemButton>
+    <ListItemButton component={Link} to={'/assign'}>
       <ListItemIcon>
         <PersonSearchIcon />
       </ListItemIcon>
