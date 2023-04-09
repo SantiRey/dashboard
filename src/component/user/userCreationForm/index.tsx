@@ -2,7 +2,7 @@ import { Box, Button, Paper, TextField } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import { v4 as uuidv4 } from 'uuid';
 import { userStructur } from '../../../states/userSlice';
-import Title from '../../title';
+import Title from '../../structur/title';
 import { rowsUser as rowsUserGlobal } from '../../../utils/data';
 export default function UserCreationForm({
   rowsUser,

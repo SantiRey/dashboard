@@ -2,12 +2,12 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 
-import SketchContent from '../../component/structur';
+import SkeletonContent from '../../component/structur/skeleton';
 import UserCard from '../../component/user/userCard';
 
 function UserBoardContent() {
   return (
-    <SketchContent>
+    <SkeletonContent>
       <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
         <Grid container spacing={3}>
           {/* Recent Orders */}
@@ -18,7 +18,7 @@ function UserBoardContent() {
           </Grid>
         </Grid>
       </Container>
-    </SketchContent>
+    </SkeletonContent>
   );
 }
 

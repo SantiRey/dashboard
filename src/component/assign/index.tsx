@@ -9,7 +9,7 @@ import Paper from '@mui/material/Paper';
 import * as React from 'react';
 import { userStructur } from '../../states/userSlice';
 import { rowsUser } from '../../utils/data';
-import Title from '../title';
+import Title from '../structur/title';
 function not(a: readonly userStructur[], b: readonly userStructur[]) {
   return a.filter((value) => b.indexOf(value) === -1);
 }

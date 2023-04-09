@@ -14,7 +14,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { mainListItems, secondaryListItems } from '../sideMenu/listItems';
-import { createTheme } from '../../theme/appTheme';
+import { createTheme } from '../../../theme/appTheme';
 import Copyright from '../copyright';
 //import { useSelector } from 'react-redux';
 import AccountCircle from '@mui/icons-material/AccountCircle';
@@ -69,7 +69,7 @@ const Drawer = styled(MuiDrawer, {
   },
 }));
 
-const SketchContent = ({ children }: { children: JSX.Element }) => {
+const SkeletonContent = ({ children }: { children: JSX.Element }) => {
   const [open, setOpen] = React.useState(true);
 
   //const user = useSelector((state: { user: any }) => state.user);
@@ -77,7 +77,6 @@ const SketchContent = ({ children }: { children: JSX.Element }) => {
   const toggleDrawer = () => {
     setOpen(!open);
   };
-
 
   return (
     <ThemeProvider theme={createTheme}>
@@ -169,4 +168,4 @@ const SketchContent = ({ children }: { children: JSX.Element }) => {
   );
 };
 
-export default SketchContent;
+export default SkeletonContent;

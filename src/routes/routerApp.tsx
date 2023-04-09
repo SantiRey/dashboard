@@ -1,5 +1,4 @@
 import { createBrowserRouter } from 'react-router-dom';
-import App from '../App';
 import AssingView from '../view/AsignView';
 import Dashboard from '../view/DashBoard';
 import TicketCreationView from '../view/TicketCreationView';
@@ -19,10 +18,6 @@ export const router = createBrowserRouter([
   {
     path: '/users',
     element: <UserBoard />,
-  },
-  {
-    path: '/create',
-    element: <App />,
   },
   {
     path: '/ticket/creation',

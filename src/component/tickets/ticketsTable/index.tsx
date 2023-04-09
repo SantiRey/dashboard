@@ -5,7 +5,7 @@ import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import * as React from 'react';
-import Title from '../../title';
+import Title from '../../structur/title';
 import { rowsTickes } from '../../../utils/data';
 import { useNavigate } from 'react-router-dom';
 import { ticketStructur } from '../../../states/ticketSlice';

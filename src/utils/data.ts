@@ -1,4 +1,4 @@
-import { messageStructur } from '../states/ticketSlice';
+import { messageStructur, ticketStructur } from '../states/ticketSlice';
 // USERS
 
 function createUser(
@@ -54,7 +54,7 @@ function createData(
 }
 const rowsTickes = [
   createData(
-    '1',
+    '5',
     '2022-04-07',
     'Tarea 1',
     'Descripción de la tarea 1',
@@ -143,20 +143,38 @@ export const useSingleRowTicket = () => (int: string | undefined) => {
 export const useGetTicketByStatus = () => {
   const f = (status: string) => {
     return rowsTickes.filter((row) => row.status == status);
-  }
-  return{
+  };
+  return {
     getOpen: f('Open'),
     getInProgress: f('In Progress'),
-  }
+  };
 };
 
 export const useGetTicketByTier = () => {
   const f = (tier: string) => {
     return rowsTickes.filter((row) => row.tier == tier);
-  }
-  return{
+  };
+  return {
     getOpen: f('Open'),
     getInProgress: f('In Progress'),
-  }
+  };
 };
+
+export const useGetTiers = () => {
+  return () => {
+    const tiers = new Set(rowsTickes.map((row) => row.tier));
+    return tiers;
+  };
+};
+
+export const useGetTiersCount = () => {
+  return () => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const count = [...useGetTiers()()].map(tier => rowsTickes.reduce((acc, row) => {
+      return row.tier==tier? acc+1: acc
+    }, 0))
+    return count;
+  };
+};
+
 export { rowsTickes, rowsUser };

@@ -3,11 +3,10 @@ import GroupRemoveIcon from '@mui/icons-material/GroupRemove';
 import PhoneAndroidIcon from '@mui/icons-material/PhoneAndroid';
 import {
   Box,
-  Card,
   CardContent,
   Stack,
   SvgIcon,
-  Typography,
+  Typography
 } from '@mui/material';
 import PropTypes from 'prop-types';
 import {
@@ -17,8 +16,8 @@ import {
   ReactPortal,
 } from 'react';
 import { createTheme } from '../../theme/appTheme';
+import Title from '../structur/title';
 import { ChartDonnut } from './charDonnut';
-import Title from '../title';
 
 const useChartOptions = (labels: any) => {
   const theme = createTheme;
@@ -89,7 +88,7 @@ const iconMap: IconMap = {
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const ProgressTicketsChart = (props: {
+export const OpenOngoingTicketsChart = (props: {
   chartSeries: any;
   labels: any;
   sx: any;
@@ -97,7 +96,7 @@ export const ProgressTicketsChart = (props: {
   const { chartSeries, labels, sx } = props;
   const chartOptions = useChartOptions(labels);
   return (
-    <Card sx={sx}>
+    <>
       <Title>General View</Title>
       <CardContent>
         <ChartDonnut
@@ -149,11 +148,11 @@ export const ProgressTicketsChart = (props: {
           )}
         </Stack>
       </CardContent>
-    </Card>
+    </>
   );
 };
 
-ProgressTicketsChart.propTypes = {
+OpenOngoingTicketsChart.propTypes = {
   chartSeries: PropTypes.array.isRequired,
   labels: PropTypes.array.isRequired,
   sx: PropTypes.object,

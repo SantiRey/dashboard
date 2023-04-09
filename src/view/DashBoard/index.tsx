@@ -4,9 +4,9 @@ import Paper from '@mui/material/Paper';
 
 import Link from '@mui/material/Link';
 //import { useSelector } from 'react-redux';
-import SketchContent from '../../component/structur';
+import SkeletonContent from '../../component/structur/skeleton';
 import TickesTable from '../../component/tickets/ticketsTable';
-import { ProgressTicketsChart } from '../../component/progressTicketsChart';
+import { OpenOngoingTicketsChart } from '../../component/OpenOngoingTicketsChart';
 import { useGetTicketByStatus } from '../../utils/data';
 import Tier from '../../component/tier';
 
@@ -15,12 +15,13 @@ function DashboardContent() {
   const getTicketsByStatus = useGetTicketByStatus();
   const openTickets = getTicketsByStatus.getOpen;
   const inProgressTickets = getTicketsByStatus.getInProgress;
+  
   return (
-    <SketchContent>
+    <SkeletonContent>
       <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
         <Grid container spacing={3}>
           {/* Chart */}
-          <Grid item xs={12} md={8} lg={7}>
+          <Grid item xs={12} md={12} lg={7}>
             <Paper
               sx={{
                 p: 2,
@@ -30,11 +31,11 @@ function DashboardContent() {
               }}
             >
               {/*<Chart />*/}
-              <Tier></Tier>
+              <Tier/>
             </Paper>
           </Grid>
           {/* Recent Deposits */}
-          <Grid item xs={12} md={6} lg={5}>
+          <Grid item xs={12} md={12} lg={5}>
             <Paper
               sx={{
                 p: 2,
@@ -43,7 +44,7 @@ function DashboardContent() {
                 height: 500,
               }}
             >
-              <ProgressTicketsChart
+              <OpenOngoingTicketsChart
                 chartSeries={[openTickets.length, inProgressTickets.length]}
                 labels={['open', 'ongoing']}
                 sx={{ height: '100%' }}
@@ -68,7 +69,7 @@ function DashboardContent() {
           </Grid>
         </Grid>
       </Container>
-    </SketchContent>
+    </SkeletonContent>
   );
 }
 

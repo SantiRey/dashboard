@@ -1,39 +1,52 @@
+import Chart from 'react-apexcharts';
+import { useGetTiers, useGetTiersCount } from '../utils/data';
+import Title from './structur/title';
+import { CardContent } from '@mui/material';
+function Tier() {
+  const getTiers = useGetTiers();
+  const getTiersCount = useGetTiersCount();
+  const tiers = getTiers();
 
-import Chart from "react-apexcharts";
+  const state = {
+    options: {
+      chart: {
+        id: 'basic-bar',
+      },
+      xaxis: {
+        categories: [...tiers],
+      },
+      tooltip: {
+        enabled: true,
+        theme: 'dark',
+        style: {
+          background: '#f3f3f3',
+          color: 'orange',
+          fontFamily: 'Open Sans, sans-serif',
 
-function Tier(){ 
-
-    const state = {
-        options: {
-          chart: {
-            id: "basic-bar"
-          },
-          xaxis: {
-            categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999]
-          }
         },
-        series: [
-          {
-            name: "series-1",
-            data: [30, 40, 45, 50, 49, 60, 70, 91]
-          }
-        ]
-      };
-    return (
-      <div className="app">
-        <div className="row">
-          <div className="mixed-chart">
-            <Chart
-              options={state.options}
-              series={state.series}
-              type="bar"
-              width="500"
-            />
-          </div>
-        </div>
-      </div>
-    );
-  }
+      }
+    },
+    series: [
+      {
+        name: 'tickets',
+        data: getTiersCount(),
+      },
+    ],
+  };
 
+  return (
+        <>
+        <Title>Tickets By Tier</Title>
+        <CardContent>
+          <Chart
+            options={state.options}
+            series={state.series}
+            type="bar"
+            width="500"
+          />
+          </CardContent>
+        </>
+  );
+}
 
 export default Tier;

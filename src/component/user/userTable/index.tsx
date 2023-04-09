@@ -6,7 +6,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import * as React from 'react';
 import { useNavigate } from 'react-router-dom';
-import Title from '../../title';
+import Title from '../../structur/title';
 import { userStructur } from '../../../states/userSlice';
 
 export default function UserTable({ rowsUser }: { rowsUser: userStructur[] }) {

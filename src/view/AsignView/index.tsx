@@ -3,11 +3,11 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 
 import Assing from '../../component/assign';
-import SketchContent from '../../component/structur';
+import SkeletonContent from '../../component/structur/skeleton';
 
 function AssingContent() {
   return (
-    <SketchContent>
+    <SkeletonContent>
       <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
         <Grid container spacing={3}>
           {/* Recent Orders */}
@@ -18,7 +18,7 @@ function AssingContent() {
           </Grid>
         </Grid>
       </Container>
-    </SketchContent>
+    </SkeletonContent>
   );
 }
 
